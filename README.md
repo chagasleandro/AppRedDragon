@@ -23,7 +23,7 @@
 
 
 
-![clima website](/app-clima.png)
+![AppRedDragon](/app-clima.png)
 
 ## :rocket: Technologies ##
 
