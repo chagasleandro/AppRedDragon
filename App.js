@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const slides = [
   {
@@ -27,15 +28,32 @@ const slides = [
 export default function App() {
   const [showHome, setShowHome] = useState(false);
 
+  const buttonLabel = (Label) => {
+    return(
+      <View styles = {{
+        padding: 12 
+      }}>
+        <Text styles={{
+          color: 'black',
+          fontWeight: '600',
+          fontSize: 23,
+        }}>
+          {Label}
+        </Text>
+      </View>
+    )
+  }
+
 function renderSlides({ item }){
   return(
     <View style={{flex:1}}>
       <Image 
         source={item.image}
         style={{
-          resizeMode: 'cover',
+          resizeMode: 'contain',
           height: '73%',
           width: '100%',
+
         }}
       />
       <Text style={{
@@ -71,12 +89,15 @@ if(showHome){
       data={slides}
       activeDotStyle={{
         backgroundColor: '#099CFF',
-        width: 20
+        width: 20,
       }}
-      renderNextButton={ () => <Text>Próximo</Text>}
-      renderPrevButton={ () => <Text>Voltar</Text>}
-      renderDoneButton={ () => <Text style={{fontSize: 20}}>Loja</Text>}
-      onDone={() => alert('Deseja ir para loja agora!')}
+      showSkipButton
+      renderNextButton={() => buttonLabel('NEXT')}
+      renderSkipButton={() => buttonLabel('SKIP')}
+      renderDoneButton={() => buttonLabel('DONE')}
+      onDone={() => {
+        alert('Deseja ir para loja agora!')
+      }}
     />
     );
   }
